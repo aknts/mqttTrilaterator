@@ -6,7 +6,7 @@ const config = JSON.parse(Buffer.from(require('./config.js'), 'base64').toString
 // Settings
 const pid = Date.now();
 var mynodeid = config.mynodeid;
-var deployment = config.deployment;
+var deployment = config.deploymentname;
 var broker = config.globalsettings.broker;
 var logtopic = mynodeid+'/'+pid+'/log';
 var controltopic = mynodeid+'/'+pid+'/control';
