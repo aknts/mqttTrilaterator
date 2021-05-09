@@ -27,10 +27,10 @@ const trilaterator = require('./trilaterator');
 const filter = require('./filter');
 
 // Variables
-var readyresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"'+process.title+'","request":"ready"}';
-var joinresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"'+process.title+'","request":"join"}';
-var leavingresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"'+process.title+'","request":"leaving"}';
-var terminatingresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"'+process.title+'","request":"terminating"}';
+var readyresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"trilaterator","request":"ready"}';
+var joinresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"trilaterator","request":"join"}';
+var leavingresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"trilaterator","request":"leaving"}';
+var terminatingresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"trilaterator","request":"terminating"}';
 var init = 0;
 var halt = 1;
 var appmodules = ['emitter','filter','loadbalancer','trilaterator','aggregator'];
