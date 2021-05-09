@@ -181,7 +181,7 @@ function heapCheck () {
 }
 
 // Begin execution
-livemodules.push({"node":mynodeid,"pid":pid.toString(),"name":process.title});
+livemodules.push({"node":mynodeid,"pid":pid.toString(),"name":"trilaterator"});
 
 // Start recieving control MQTT messages
 l.info('Started recieving control MQTT messages on '+controltopic+'.');
