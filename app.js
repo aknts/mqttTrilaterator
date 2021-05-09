@@ -6,6 +6,7 @@ const config = JSON.parse(Buffer.from(require('./config.js'), 'base64').toString
 // Settings
 const pid = Date.now();
 var mynodeid = config.mynodeid;
+var deployment = config.deployment;
 var broker = config.globalsettings.broker;
 var logtopic = mynodeid+'/'+pid+'/log';
 var controltopic = mynodeid+'/'+pid+'/control';
@@ -27,7 +28,7 @@ const trilaterator = require('./trilaterator');
 const filter = require('./filter');
 
 // Variables
-var readyresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"trilaterator","request":"ready"}';
+var readyresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","deployment":"'+deployment+'","name":"trilaterator","request":"ready"}';
 var joinresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"trilaterator","request":"join"}';
 var leavingresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"trilaterator","request":"leaving"}';
 var terminatingresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","name":"trilaterator","request":"terminating"}';
