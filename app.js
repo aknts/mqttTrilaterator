@@ -145,6 +145,7 @@ function filterRequests(payload){
 
 function filterResults(payload) {
 	if (halt == 0) {
+		console.log('Starting to process at: '+Date.now());
 		//a new measurement arrives, process the new measurement and when done inform for another
 		var results = JSON.parse(payload);
 		l.debug('Received a payload for calculation.');
@@ -167,6 +168,7 @@ function filterResults(payload) {
 function sendData (results) {
 	l.info('Sending filtered results'+JSON.stringify(results));
 	mqttmod.send(broker,nextnodedatatopic,JSON.stringify(results));
+	console.log('Finished processing at: '+Date.now());
 }
 
 function heapCheck () {
