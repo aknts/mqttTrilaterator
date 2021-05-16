@@ -20,12 +20,20 @@ var pipelinetopic = config.nameid+'/broadcast'
 var logmode = config.appsettings.logmode;
 var txpower = config.appsettings.txpower;
 var plex = config.appsettings.plex;
+var dbSettings = {host:'192.168.2.240',user:'nodejs',password:'justanodejsapp'};
 
 // Modules
 const mqttmod = require('mqttmod');
 const l = require('mqttlogger')(broker, logtopic, mqttmod, logmode);
 const trilaterator = require('./trilaterator');
 const filter = require('./filter');
+var mysql = require('mysql');
+var pool  = mysql.createPool({
+  connectionLimit : 10,
+  host            : dbSettings.host,
+  user            : dbSettings.user,
+  password        : dbSettings.password
+});
 
 // Variables
 var readyresponse = '{"node":"'+mynodeid+'","pid":"'+pid+'","deployment":"'+deployment+'","name":"trilaterator","request":"ready"}';
@@ -167,7 +175,13 @@ function filterResults(payload) {
 
 function sendData (results) {
 	l.info('Sending filtered results'+JSON.stringify(results));
-	mqttmod.send(broker,nextnodedatatopic,JSON.stringify(results));
+	//mqttmod.send(broker,nextnodedatatopic,JSON.stringify(results));
+	let q = 'insert into dasfest_database.messages (uid,lat,lon,timestamp) values ("'+results.uid+'",'+results.lat+','+results.lon+','+results.timestamp+');';
+	pool.query(q, function(err, rows, fields) {
+		if (err) throw err;
+		console.log('Insert data to db');
+	});
+}
 	console.log('Finished processing at: '+Date.now());
 }
 

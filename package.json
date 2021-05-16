@@ -19,6 +19,7 @@
   "dependencies": {
     "mqttlogger": "github:aknts/mqttlogger",
     "mqttmod": "github:aknts/mqttmod",
-    "trilat": "^1.0.0"
+    "trilat": "^1.0.0",
+    "mysql": "^2.16.0"
   }
 }
