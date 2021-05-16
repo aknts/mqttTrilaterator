@@ -181,7 +181,6 @@ function sendData (results) {
 		if (err) throw err;
 		console.log('Insert data to db');
 	});
-}
 	console.log('Finished processing at: '+Date.now());
 }
 
