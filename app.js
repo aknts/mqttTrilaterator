@@ -20,7 +20,8 @@ var pipelinetopic = config.nameid+'/broadcast'
 var logmode = config.appsettings.logmode;
 var txpower = config.appsettings.txpower;
 var plex = config.appsettings.plex;
-var dbSettings = {host:'192.168.2.240',user:'nodejs',password:'justanodejsapp'};
+//var dbSettings = {host:'192.168.2.240',user:'nodejs',password:'justanodejsapp'};
+var mariadb = {host:'192.168.2.241',port:'30306',user:'root',password:'mariadbhasapassword',db:'dasfestfinal'};
 
 // Modules
 const mqttmod = require('mqttmod');
@@ -30,9 +31,10 @@ const filter = require('./filter');
 var mysql = require('mysql');
 var pool  = mysql.createPool({
   connectionLimit : 10,
-  host            : dbSettings.host,
-  user            : dbSettings.user,
-  password        : dbSettings.password
+  host            : mariadb.host,
+  port            : mariadb.port,
+  user            : mariadb.user,
+  password        : mariadb.password
 });
 
 // Variables
@@ -176,7 +178,7 @@ function filterResults(payload) {
 function sendData (results) {
 	l.info('Sending filtered results'+JSON.stringify(results));
 	//mqttmod.send(broker,nextnodedatatopic,JSON.stringify(results));
-	let q = 'insert into dasfest_database.messages (uid,lat,lon,timestamp) values ("'+results.uid+'",'+results.lat+','+results.lon+','+results.timestamp+');';
+	let q = 'insert into '+mariadb.db+'.messages (uid,lat,lon,timestamp) values ("'+results.uid+'",'+results.lat+','+results.lon+','+results.timestamp+');';
 	pool.query(q, function(err, rows, fields) {
 		if (err) throw err;
 		console.log('Insert data to db');
