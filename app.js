@@ -21,7 +21,8 @@ var logmode = config.appsettings.logmode;
 var txpower = config.appsettings.txpower;
 var plex = config.appsettings.plex;
 //var dbSettings = {host:'192.168.2.240',user:'nodejs',password:'justanodejsapp'};
-var mariadb = {host:'192.168.2.241',port:'30306',user:'root',password:'mariadbhasapassword',db:'dasfestfinal'};
+//var mariadb = {host:'192.168.2.241',port:'30306',user:'root',password:'mariadbhasapassword',db:'dasfestfinal'};
+var mariadb = config.appsettings.mariadb;
 
 // Modules
 const mqttmod = require('mqttmod');
