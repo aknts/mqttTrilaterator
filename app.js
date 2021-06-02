@@ -12,16 +12,12 @@ var logtopic = mynodeid+'/'+pid+'/log';
 var controltopic = mynodeid+'/'+pid+'/control';
 var broadcasttopic = mynodeid+'/broadcast';
 var datatopic = mynodeid+'/'+pid+'/data';
-var nextnode = config.nextnode;
 var previousnode = config.previousnode;
-var nextnodedatatopic = nextnode+'/data';
 var previousnodecontroltopic = previousnode+'/control';
 var pipelinetopic = config.nameid+'/broadcast'
 var logmode = config.appsettings.logmode;
 var txpower = config.appsettings.txpower;
 var plex = config.appsettings.plex;
-//var dbSettings = {host:'192.168.2.240',user:'nodejs',password:'justanodejsapp'};
-//var mariadb = {host:'192.168.2.241',port:'30306',user:'root',password:'mariadbhasapassword',db:'dasfestfinal'};
 var mariadb = config.appsettings.mariadb;
 
 // Modules
@@ -219,7 +215,6 @@ l.info('Started receiving control messages on '+pipelinetopic);
 mqttmod.receive(broker,pipelinetopic,filterRequests);
 
 // Inform previous node that you are ready
-//mqttmod.send(broker,previousnodecontroltopic,readyresponse);
 mqttmod.send(broker,pipelinetopic,readyresponse);
 
 
