@@ -155,7 +155,7 @@ function filterResults(payload) {
 		console.log('Starting to process at: '+Date.now());
 		//a new measurement arrives, process the new measurement and when done inform for another
 		var results = JSON.parse(payload);
-		l.debug('Received a payload for calculation.');
+		l.debug('Received a payload of '+results.length+' for calculation.');
 		measurement = filter.removeDuplicates(results);
 		l.debug('Result after removing duplicates: ' + JSON.stringify(measurement));
 		trilaterator.process(measurement, l, txpower, plex, function(err, result){
